@@ -1,0 +1,43 @@
+{% load bootstrap3 %}
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  {% if title %}
+  <title>instavector-{{title}}</title>
+  {% else %}
+    <title> instavector</title>
+  {% endif %}
+  {% block styles %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+ 
+  
+    {% bootstrap_css %}
+  {% endblock %}
+
+</head>
+<body>
+  {% include "navbar.html" %}
+  {% if messages %}
+    {% for message in messages%}
+      <div class="alert alert-{{message.tags}}">
+        {{message}}
+      </div>
+    {% endfor %}
+  {% endif %}
+  
+    {% block content %} 
+    {%endblock%}
+    {% include "footer.html" %}
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static '/js/scripts.js' %}"></script>
+        {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+</html>
