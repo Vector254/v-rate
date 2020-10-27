@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-  body{
-    margin-top: 60px;
-  }
+  
 .results{
     text-align: center;
 }    
@@ -21,7 +19,7 @@ margin: 10px;
 <div class="container">
   
   
-    <div class="row results">
+    <div class="results">
      
       {% if results%}
         <h3>Found {{ results|length }} project{{ results|length|pluralize }} </h3>
@@ -29,19 +27,22 @@ margin: 10px;
         <h3> Found 0 projects</h3>
       {% endif %}
         <hr>
+        <div class="row">
       {% for result in results %}
       <!-- displaying post results -->
+     
           
           <div class="card col-md-5">
+            <div class="card-header">{{result.title}}</div>
             <div class="card-body">
-             <a href="{% url 'detail' image.id %}"><img class="pic" src="{{result.image.url}}"  alt="Image"></a>
+             <a href="{% url 'details' result.id %}"><img class="pic" src="{{result.image.url}}"  alt="Image"></a>
 
-              
-          
           </div>
   
-      </div>  
+      </div> 
+
       {% endfor %}
+      </div>
       </div>
       </div>
      
