@@ -107,7 +107,7 @@ def create_post(request):
         form = ProjectPostForm(request.POST, request.FILES or None)
         if form.is_valid():
             add=form.save(commit=False)
-            current_user = Profile.objects.get(user=request.user)
+            add.user = request.user
             add.save()
             return redirect('index')
     

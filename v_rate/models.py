@@ -23,6 +23,7 @@ class Project(models.Model):
     description = models.TextField(max_length=255)
     image = models.ImageField(upload_to = 'images/')
     user = models.ForeignKey(User, on_delete=models.CASCADE,null='True', blank=True)
+    date_posted = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f'{self.title}'
@@ -41,7 +42,9 @@ class Project(models.Model):
     def search_project(cls, title):
         return cls.objects.filter(title__icontains=title).all()
 
-   
+    class Meta:
+        ordering = ["-date_posted"]
+
 
 
     

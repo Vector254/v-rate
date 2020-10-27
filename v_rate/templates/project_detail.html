@@ -36,14 +36,33 @@
         <div class="card">
           <div class="card-header">ratings</div>
           <div class="card-body">
+            {% if project.ratings.all %}
             {% for rating in project.ratings.all %}
             {% if forloop.counter is project.ratings.all.count %}
-            <p>design</p><b>{{rating.design}}</b>
-            <p>usability</p><b>{{rating.usability}}</b>
-            <p>content</p><b>{{rating.content}}</b>
-            <p><b>score: {{rating.score}}</b></p>
+            <p>design</p>
+            <div class="progress" style="height: 15px;">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{rating.design}}"  aria-valuemin="0" aria-valuemax="10">{{rating.design}}</div>
+            </div>
+          
+            <p>usability</p>
+            <div class="progress" style="height: 15px;">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{rating.usability}}"  aria-valuemin="0" aria-valuemax="10">{{rating.usability}}</div>
+            </div>
+         
+            <p>content</p>
+            <div class="progress" style="height: 15px;">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{rating.content}}"  aria-valuemin="0" aria-valuemax="10">{{rating.content}}</div>
+            </div>
+         
+            <p><b>score</b></p>
+              <div class="progress" style="height: 15px;">
+                <div class="progress-bar  bg-success" role="progressbar" aria-valuenow="{{rating.score}}"  aria-valuemin="0" aria-valuemax="10">{{rating.score}}</div>
+              </div> 
             {% endif %}
             {% endfor %}
+            {% else %}
+            <p>no ratings for this project yet!</p>
+            {% endif %}
           </div>
         </div>
         <form action="" method="POST">
@@ -57,5 +76,6 @@
       </div>
       </div>
       </div>
+     
 
 {% endblock %}
