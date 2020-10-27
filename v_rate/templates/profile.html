@@ -1,0 +1,81 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+   body{
+    margin-top: 70px;
+}
+.prof_pic{
+    width: 60%;
+    margin-left: 30px;
+    border: 1px solid grey;
+    border-radius: 150px;
+}
+.posted img{
+    margin-bottom: 20px;
+    height:280px ;
+    width: 100%;
+}
+.modal-content{
+    padding: 20px;
+}
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+        
+            <img class="prof_pic" src="{{user.profile.profile_picture.url}}" alt="profile_pic">
+        </div>
+        <div class="col-md-4">
+            <h1>{{user.username}} </h1>
+                
+            <h5>email: <b>{{user.email}}</b> </h5>
+
+           
+         
+         
+           
+            
+            <br><p>{{user.profile.bio}}</p>
+
+        </div>
+        <div class="col-md-4"><br>
+           
+                <button class="btn btn-default" data-toggle="modal" data-target=".bd-modal-md"><b>edit profile</b> </button>
+                <p><br><b>{{user.profile.projects.count}}</b>  project {{user.profile.projects.count|pluralize}}</p>
+ 
+            
+        </div>
+    </div>
+    <hr>
+    <!--profile update form-->
+    <div  class="modal fade bd-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
+       <div class="modal-dialog modal-md ">
+        <div class="modal-content">
+        <b>edit profile</b><hr><br>
+                <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{user_form|crispy}}
+                {{profile_form|crispy}}
+                <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-sm" value="update">
+                </div>
+
+                <input type="hidden" name="next" value="{{next}}">
+
+            </form>
+      </div>
+    </div>
+    </div>
+    <hr>
+    <p class="text-center"><b>PROJECTS</b> </p>
+    {% for project in user.profile.projects %}
+    <div class="col-md-4">
+        <div class="posted">
+            <img src="{{project.image.url}}" alt="">
+        </div>
+    </div>
+       
+    {% endfor %}
+</div>
+{% endblock %}
