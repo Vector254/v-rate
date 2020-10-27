@@ -1,11 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Profile, Project, Rate
+from .forms import UserRegistrationForm, ProjectPostForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
-
+@login_required
 def index(request):
-    return render(request, 'index.html')
+    projects = Project.objects.all()
+    return render(request, 'index.html',{"projects":projects})
 
 def register(request):
     if request.method == 'POST':
@@ -50,7 +54,7 @@ def profile(request):
 def search_results(request):
     if request.method == 'GET':
         title = request.GET.get("query")
-        results = Post.objects.filter(title__icontains=title).all()
+        results = Project.objects.filter(title__icontains=title).all()
         print(results)
         message = f'name'
         params = {
@@ -71,3 +75,19 @@ def detail(request,project_id):
         }
 
     return render(request,"project_detail.html", params)
+
+@login_required
+def create_post(request):
+    current_user = request.user
+    form = ProjectPostForm()
+    if request.method == 'POST':
+        form = ProjectPostForm(request.POST, request.FILES or None)
+        if form.is_valid():
+            add=form.save(commit=False)
+            current_user = Profile.objects.get(user=request.user)
+            add.save()
+            return redirect('index')
+    
+
+    context = {'form':form}
+    return render(request,'create_post.html',context)

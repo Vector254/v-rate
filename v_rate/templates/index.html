@@ -1,5 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<style>
+    body{
+        margin-top: 100px;
+    }
+</style>
 {{block.super}}
-<h1>welcome to v rate!</h1>
+<div class="container">
+    <div class="row">
+
+    <div class="create-post text-center">
+        <a href="{% url 'create'%}"><button class="btn btn-info">create post</button> </a>
+      </div>
+    <p>{{projects}}</p>
+    </div>
+</div>
+
 {% endblock %}

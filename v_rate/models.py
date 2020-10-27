@@ -10,7 +10,7 @@ class Profile(models.Model):
     profile_picture = models.ImageField(upload_to='images/', default='default.png')
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
-    projects = models.ForeignKey('Project', on_delete=models.CASCADE)
+    projects = models.ForeignKey('Project', on_delete=models.CASCADE,null=True, blank=True)
     contact = models.EmailField(max_length=100, blank=True)
 
     def __str__(self):
@@ -22,12 +22,12 @@ class Project(models.Model):
     link = models.URLField(max_length=255)
     description = models.TextField(max_length=255)
     image = models.ImageField(upload_to = 'images/')
-    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null='True', blank=True)
 
     def __str__(self):
         return f'{self.title}'
 
-     def save_project(self):
+    def save_project(self):
         self.save()
 
     def delete_project(self):
