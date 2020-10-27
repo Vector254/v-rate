@@ -1,0 +1,73 @@
+<style>
+   
+    .user_pic{
+      height: 30px;
+      border-radius: 20px;
+    }
+    .search-btn  {
+      position:absolute;
+    }
+    .navbar{
+      padding-right: 20px;
+    }
+
+    .navbar-toggler{
+      margin-top: -20px;
+    }
+  </style>
+  <div class="container-fluid navig ">
+  <nav class="navbar  navbar-fixed-top navbar-expand-sm">
+      <div class="col-sm-3 col-md-3">
+        <div class="navbar-header">
+          <a id="nav-name" class="navbar-brand" href="/">V-rate</a>
+        </div>
+        <button class="navbar-toggler hidden-sm " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="float: right;">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
+      </div>
+   <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <!-- Adding a search form  -->
+        <div class=" col-md-5">
+      
+  
+          <form id="search" class="navbar-form " role="search" action="{% url 'search' %}">
+  
+            <div class="input-group">
+              <input type="text" class="form-control text-center" placeholder="Search" name="query">
+              <button type="submit" class="btn search-btn"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+  
+          </form>
+  
+        </div>
+         <!-- search form end -->
+        <div class="col-sm-4 col-md-4">
+        <div class="navi navbar-right">
+            <ul>
+                
+                <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li><a href="{% url 'explore'%}"><i class="glyphicon glyphicon-globe"></i></a></li>
+                {% if user.is_authenticated %}
+                <li><div class="dropdown show">
+                  <a  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="user_pic" src="{{user.profile.profile_picture.url}}" alt="profile">
+                  </a>
+                
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'profile'  %}"><i class="glyphicon glyphicon-user"></i> profile</a>
+                    <a class="dropdown-item" href="#"><i class="glyphicon glyphicon-cog"></i> settings</a><hr>
+                    <a class="dropdown-item" href="{% url 'logout'%}">Log Out</a>
+                  </div>
+                </div>
+              </li>
+                
+                {% endif %}
+            </ul>
+        </div>
+        </div>
+      </div>
+       
+      
+  </nav>
+  <hr>
+  </div>
