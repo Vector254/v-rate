@@ -1,8 +1,4 @@
-<style>
-  .search-btn  {
-    position:absolute;
-  }
-</style>
+
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="col-md-3">
   <a class="navbar-brand" href="/">V-rate</a>
@@ -18,21 +14,35 @@
 
     </form>
   </div>
+  
   <div class="col-md-4">
  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="/"><i class="glyphicon glyphicon-home"></i>Home <span class="sr-only">(current)</span></a>
-      {% if user.is_authenticated %}
-      <a class="dropdown-item" href="{% url 'profile'  %}"><i class="glyphicon glyphicon-user"></i> profile</a>
-      <a class="dropdown-item" href="{% url 'logout'%}">Log Out</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
-      {% endif %}
-    </div>
-  </div>
+  </button>-->
+  <div class="navi navbar-right">
+    <ul>
+        
+        <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+      
+        {% if user.is_authenticated %}
+        <li><div class="dropdown show">
+          <a  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="user_pic" src="{{user.profile.profile_picture.url}}" alt="profile">
+          </a>
+        
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'profile'  %}"><i class="glyphicon glyphicon-user"></i> profile</a>
+            <a class="dropdown-item" href="{% url 'logout'%}">Log Out</a>
+     
+          </div>
+        </div>
+      </li>
+        
+        {% endif %}
+    </ul>
+</div>
+  
   </div>
 </nav>
 
