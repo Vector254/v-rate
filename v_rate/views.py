@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Profile, Projects, Rate
+from .models import Profile, Project, Rate
 
 # Create your views here.
 

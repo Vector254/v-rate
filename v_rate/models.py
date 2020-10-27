@@ -10,15 +10,18 @@ class Profile(models.Model):
     profile_picture = models.ImageField(upload_to='images/', default='default.png')
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
-    projects = models.ForeignKey('Projects', on_delete=models.CASCADE)
+    projects = models.ForeignKey('Project', on_delete=models.CASCADE)
     contact = models.EmailField(max_length=100, blank=True)
 
-class Projects(models.Model):
+
+class Project(models.Model):
     title = models.CharField(max_length=155)
     link = models.URLField(max_length=255)
     description = models.TextField(max_length=255)
     image = models.ImageField(upload_to = 'images/')
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
+
+    
 
 class Rate(models.Model):
     rating = (
@@ -39,7 +42,7 @@ class Rate(models.Model):
     content = models.IntegerField(choices=rating, blank=True)
     score = models.FloatField(default=0, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    project = models.ForeignKey('Projects', on_delete=models.CASCADE, related_name='ratings', null=True)
+    project = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='ratings', null=True)
 
     
 

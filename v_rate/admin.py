@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Profile, Projects, Rate
+from .models import Profile, Project, Rate
 
 # Register your models here.
-admin.site.register(Projects)
+admin.site.register(Project)
 admin.site.register(Profile)
 admin.site.register(Rate)
