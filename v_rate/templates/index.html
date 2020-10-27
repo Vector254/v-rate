@@ -1,19 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 <style>
-    body{
-        margin-top: 100px;
-    }
+   img{
+       width: 100%;
+       height: 100%;
+   }
 </style>
 {{block.super}}
 <div class="container">
     <div class="row">
 
     <div class="create-post text-center">
-        <a href="{% url 'create'%}"><button class="btn btn-info">create post</button> </a>
+        <a href="{% url 'create'%}"><button class="btn btn-info">post project</button> </a>
       </div>
-    <p>{{projects}}</p>
     </div>
-</div>
+      <hr>
+      {% for project in projects%}
+      <div class="col-md-6">
+        <div class="card">
+        <div class="card-header"><b>{{project.title}}</b> <a  href="{{project.link}}" style="float:  right;">visit site</a></div>
+        <div class="card-body">
+           <a href="{% url 'details' project.pk %}"> <img src="{{project.image.url}}" alt="{{project.title}}}"></a>
+            <p>{{project.description}}</p>
+        </div>
+        <div class="card-footer"><b>by:</b>{{project.user.username}}</div>
+
+        </div>
+       </div>
+    {% endfor %}
+   
+    </div>
+
 
 {% endblock %}

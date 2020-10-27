@@ -26,10 +26,14 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class ProjectPostForm(forms.ModelForm):
     
-
     class Meta:
         model = Project
         fields = ('image', 'title', 'link', 'description',)
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rate
+        fields = ['design', 'usability', 'content']
 
 
 
