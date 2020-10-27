@@ -15,8 +15,9 @@
       </div>
     </div>
       <hr>
+      <div class="row">
       {% for project in projects%}
-      <div class="col-md-6">
+      <div class="col-md-4 mb-4">
         <div class="card">
         <div class="card-header"><b>{{project.title}}</b> <a  href="{{project.link}}" style="float:  right;">visit site</a></div>
         <div class="card-body">
@@ -28,6 +29,7 @@
         </div>
        </div>
     {% endfor %}
+    </div>
    
     </div>
 

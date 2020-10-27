@@ -36,10 +36,14 @@
         <div class="card">
           <div class="card-header">ratings</div>
           <div class="card-body">
-            <p>design</p><b>{{project.ratings.design}}</b>
-            <p>usability</p><b>{{project.ratings.usability}}</b>
-            <p>content</p><b>{{project.ratings.content}}</b>
-            <b>score: {{project.ratings.score}}</b>
+            {% for rating in project.ratings.all %}
+            {% if forloop.counter is project.ratings.all.count %}
+            <p>design</p><b>{{rating.design}}</b>
+            <p>usability</p><b>{{rating.usability}}</b>
+            <p>content</p><b>{{rating.content}}</b>
+            <p><b>score: {{rating.score}}</b></p>
+            {% endif %}
+            {% endfor %}
           </div>
         </div>
         <form action="" method="POST">

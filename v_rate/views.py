@@ -84,7 +84,10 @@ def detail(request,pk):
 
             score =(design + usability + content) / 3
             rate.score = round(score, 2)
+            print(rate.score)
             rate.save()
+            
+            
     else:
         form = RatingForm()
     
