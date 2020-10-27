@@ -12,6 +12,8 @@ urlpatterns=[
     url('register/', views.register, name='register'),
     url('logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     url('profile/', views.profile, name='profile'),
+    url(r'^search/', views.search_results, name='search'),
+    url(r'project/(\d+)',views.detail,name = 'detail'),
 
 ]
 if settings.DEBUG:

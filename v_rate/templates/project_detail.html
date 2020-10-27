@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+{{block.super}}
+<style>
+  body{
+    margin-top: 60px;
+  }
+  .main-pic{
+    width: 100%;
+    height: 100%;
+  }
+  #comment-section{
+    padding: 10px;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+<div class="card ">
+    <div class="card-header">
+      <img id="card-img" src="{{project.user.profile.profile_picture.url}}" alt=""><b>{{image.author.name}}</b>
+     
+     
+    </div>
+    <div class="card-body">
+        <img class="main-pic" src="{{project.image.url}}" alt="">
+      
+      <h5 class="card-title"><b>{{project.name}}</b></h5>
+      <p class="card-text">{{project.description}}</p>
+      <!--likes section-->
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+{% endblock %}

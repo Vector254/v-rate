@@ -61,3 +61,13 @@ def search_results(request):
     else:
         message = "You haven't searched for any image category"
     return render(request, 'search.html', {'message': message})
+
+def detail(request,project_id):
+   
+    project = Project.objects.get(id=project_id)
+    params = {
+        'project': project,
+       
+        }
+
+    return render(request,"project_detail.html", params)
