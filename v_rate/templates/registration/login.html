@@ -1,0 +1,55 @@
+{%extends "base-no-nav.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<style>
+  
+    .panel{
+      text-align: center;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="login">
+        <div class="col-md-6 ">
+            
+                
+                {% if form.errors %}
+                <p> Password or Username is incorrect </p>
+              {% endif %}
+              <div class="panel panel-default">
+        
+                <div class="panel-heading">
+                    <h1 id="name">v-rate</h1>
+                </div>
+                <div class="panel-body">
+        
+                  <form  action="" method="post">
+                    {% csrf_token %}
+                    {% bootstrap_form form%}
+        
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                    </div>
+                    <div class="card-body mt-3 mb-3 mr-2 ml-4">
+                        <a href="/accounts/password_reset/">forgot password?</a><br>
+                        Don't have an account? <a href="/register">Sign up</a>
+                    </div>
+                    <input type="hidden" name="next" value="{{next}}">
+        
+                  </form>
+        
+                </div>
+        
+              </div>    
+            </div>
+        </div>
+        </div>
+    
+    </div>
+    
+    
+    
+
+</div>
+
+{% endblock %}
