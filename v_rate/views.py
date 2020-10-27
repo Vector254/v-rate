@@ -46,3 +46,18 @@ def profile(request):
     }
    
     return render(request, 'profile.html', params)
+
+def search_results(request):
+    if request.method == 'GET':
+        title = request.GET.get("query")
+        results = Post.objects.filter(title__icontains=title).all()
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, 'search.html', {'message': message})

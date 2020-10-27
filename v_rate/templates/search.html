@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  body{
+    margin-top: 60px;
+  }
+.results{
+    text-align: center;
+}    
+.card{
+margin: 10px;
+
+
+}
+.pic{
+    width: 100%;
+    height: 200px;
+}
+</style>
+
+<div class="container">
+  
+  
+    <div class="row results">
+     
+      {% if results%}
+        <h3>Found {{ results|length }} project{{ results|length|pluralize }} </h3>
+      {% else %}
+        <h3> Found 0 projects</h3>
+      {% endif %}
+        <hr>
+      {% for result in results %}
+      <!-- displaying post results -->
+          
+          <div class="card col-md-5">
+            <div class="card-body">
+             <a href="{% url 'detail' image.id %}"><img class="pic" src="{{result.image.url}}"  alt="Image"></a>
+
+              
+          
+          </div>
+  
+      </div>  
+      {% endfor %}
+      </div>
+      </div>
+     
+    {% endblock %}
+    
+    
