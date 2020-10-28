@@ -17,7 +17,6 @@ This is a Django application that allows a user to post a project he/she has cre
 ##  Live Link  
 click [here](https://v_rate.herokuapp.com/)  to visit the live site
     
-
   
 ## Setup and Installation  
    
@@ -51,6 +50,12 @@ click [here](https://v_rate.herokuapp.com/)  to visit the live site
 ##### Testing the application  
  ```bash 
  python manage.py test 
+```
+#### API endpoints
+##### get requests
+```bash
+ http://localhost:8000/api/projects
+ http://localhost:8000/api/profiles
 ```
  
   
