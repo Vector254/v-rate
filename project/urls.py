@@ -19,7 +19,7 @@ from django.conf.urls import url, include
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'',include('v_rate.urls')),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    #url(r'^accounts/', include('django_registration.backends.simple.urls')),
     
 
 ]
