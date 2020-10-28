@@ -16,6 +16,9 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+   
+
+
 
 class Project(models.Model):
     title = models.CharField(max_length=155)
@@ -44,6 +47,7 @@ class Project(models.Model):
 
     class Meta:
         ordering = ["-date_posted"]
+        
 
 
 

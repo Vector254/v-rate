@@ -24,16 +24,16 @@ class ProjectTest(TestCase):
                                         user=self.user, link='https://github.com/Vector254/v-rate.git')
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.project, Projects))
+        self.assertTrue(isinstance(self.project, Project))
 
     def test_save_project(self):
         self.project.save_project()
         project = Project.objects.all()
-        self.assertTrue(len(post) > 0)
+        self.assertTrue(len(project) > 0)
 
     def test_get_projects(self):
         self.project.save()
-        projects = Project.all()
+        projects = Project.objects.all()
         self.assertTrue(len(projects) > 0)
 
     def test_search_project(self):
@@ -42,9 +42,9 @@ class ProjectTest(TestCase):
         self.assertTrue(len(project) > 0)
 
     def test_delete_project(self):
-        self.project.delete_projectt()
+        self.project.delete_project()
         project = Project.search_project('test')
-        self.assertTrue(len(post) < 1)
+        self.assertTrue(len(project) < 1)
 
 
 class RateTest(TestCase):
@@ -58,11 +58,8 @@ class RateTest(TestCase):
         self.assertTrue(isinstance(self.rate, Rate))
 
     def test_save_rate(self):
-        self.rate.save_rate()
+        self.rate.save()
         rate = Rate.objects.all()
         self.assertTrue(len(rate) > 0)
 
-    def test_get_post_rate(self, id):
-        self.rate.save()
-        rate = Rate.get_ratings(post_id=id)
-        self.assertTrue(len(rate) == 1)
+    

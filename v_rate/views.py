@@ -33,7 +33,7 @@ def register(request):
 def profile(request):
     projects = Profile.objects.all()
     #user_profile = get_object_or_404(User, pk=pk)
-   
+    user= request.user
     if request.method=='POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
         profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -49,9 +49,10 @@ def profile(request):
         profile_form = ProfileUpdateForm(instance=request.user.profile)
 
     params = {
-        'images':projects,
+        'projects':projects,
         'user_form':user_form,
         'profile_form':profile_form,
+        'user':user,
         
        
     }

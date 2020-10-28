@@ -1,13 +1,27 @@
 <style>
-  
+  @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+  .navbar{
+    background-image: url(../../../static/images/back.svg);
+    font-family: 'Black Ops One', cursive;
+    color: black;
+    margin-top: 0;
+  }
     .navi li{
     list-style: none;
     display: inline-block;
     margin-left: 20px;
+    margin-right: 20px;
     margin-top: 20px;
     font-size: 15px;
     width: 20px;
+    color: black;
 }
+  .navi li a{
+    color: black;
+}
+  .navi li a:hover{
+    color: darkcyan;
+  }
   .user_pic{
     border: 1px solid grey;
     border-radius: 10px;
@@ -16,7 +30,7 @@
 </style>
 <nav class="navbar navbar-light bg-light">
   <div class="col-md-3">
-  <a class="navbar-brand" href="/">V-rate</a>
+  <a class="navbar-brand" href="/">V-RATE</a>
   </div>
       
   <div class="col-md-4"></div>
@@ -47,7 +61,7 @@
         </div>
         </li>
         {% else %}
-        <li><a class="btn btn-outline-info btn-sm" href="{% url 'login' %}">login</a></li>
+        <li><a class="btn btn-outline-danger btn-sm" href="{% url 'login' %}">login</a></li>
         
         {% endif %}
     </ul>
