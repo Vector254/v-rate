@@ -15,7 +15,7 @@ This is a Django application that allows a user to post a project he/she has cre
 6. View my profile page
   
 ##  Live Link  
-click [here](https://v_rate.herokuapp.com/)  to visit the live site
+click [here](https://v-rate.herokuapp.com/)  to visit the live site
     
   
 ## Setup and Installation  
