@@ -8,6 +8,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProjectSerializer, ProfileSerializer
 from rest_framework import status
+from .permissions import IsAdminOrReadOnly
+
 
 
 # Create your views here.
@@ -121,6 +123,7 @@ def create_post(request):
     return render(request,'create_post.html',context)
 
 class ProjectList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         all_projects = Project.objects.all()
         serializers = ProjectSerializer(all_projects, many=True)
@@ -134,6 +137,7 @@ class ProjectList(APIView):
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProfileList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         all_profiles = Profile.objects.all()
         serializers = ProfileSerializer(all_profiles, many=True)
