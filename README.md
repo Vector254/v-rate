@@ -52,11 +52,12 @@ click [here](https://v_rate.herokuapp.com/)  to visit the live site
  python manage.py test 
 ```
 #### API endpoints
-##### get requests
+##### get requests(for post requests add a trailing slash)
 ```bash
  http://localhost:8000/api/projects
  http://localhost:8000/api/profiles
 ```
+
  
   
   
