@@ -13,7 +13,7 @@ from .permissions import IsAdminOrReadOnly
 
 
 # Create your views here.
-@login_required
+
 def index(request):
     projects = Project.objects.all()
     return render(request, 'index.html',{"projects":projects})
@@ -72,7 +72,7 @@ def search_results(request):
     else:
         message = "You haven't searched for any image category"
     return render(request, 'search.html', {'message': message})
-
+@login_required
 def detail(request,pk):
    
     project = Project.objects.get(id=pk)

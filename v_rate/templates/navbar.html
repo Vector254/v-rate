@@ -1,19 +1,26 @@
-
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
+<style>
+  
+    .navi li{
+    list-style: none;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 15px;
+    width: 20px;
+}
+  .user_pic{
+    border: 1px solid grey;
+    border-radius: 10px;
+  }
+ 
+</style>
+<nav class="navbar navbar-light bg-light">
   <div class="col-md-3">
   <a class="navbar-brand" href="/">V-rate</a>
   </div>
       
-  <div class="col-md-4">
-    <form id="search" class="navbar-form " role="search" action="{% url 'search' %}">
-
-      <div class="input-group">
-        <input type="text" class="form-control text-center" placeholder="Search" name="query">
-        <button type="submit" class="btn search-btn"><i class="glyphicon glyphicon-search"></i></button>
-      </div>
-
-    </form>
-  </div>
+  <div class="col-md-4"></div>
+   
   
   <div class="col-md-4">
  
@@ -24,11 +31,12 @@
     <ul>
         
         <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+        
       
         {% if user.is_authenticated %}
         <li><div class="dropdown show">
           <a  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="user_pic" src="{{user.profile.profile_picture.url}}" alt="profile">
+            <i class="glyphicon glyphicon-user"></i>
           </a>
         
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -37,7 +45,9 @@
      
           </div>
         </div>
-      </li>
+        </li>
+        {% else %}
+        <li><a class="btn btn-outline-info btn-sm" href="{% url 'login' %}">login</a></li>
         
         {% endif %}
     </ul>

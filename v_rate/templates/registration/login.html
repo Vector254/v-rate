@@ -3,34 +3,41 @@
 {% block content %}
 <style>
   
-    .panel{
+    .card{
       text-align: center;
     }
 </style>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="login">
+        
+          <div class="col-md-6">
+            <div class="jumbotron text-center">
+              <h2><b>v-rate</b></h2>
+              <p>Welcome to v-rate, where we help you decide which projects to
+                showcase during your interview! </p>
+            </div>
+          </div>
         <div class="col-md-6 ">
             
                 
                 {% if form.errors %}
                 <p> Password or Username is incorrect </p>
               {% endif %}
-              <div class="panel panel-default">
+              <div class="card">
         
-                <div class="panel-heading">
-                    <h1 id="name">v-rate</h1>
+                <div class="card-header">
+                    <h1 id="name">sign in</h1>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
         
                   <form  action="" method="post">
                     {% csrf_token %}
                     {% bootstrap_form form%}
         
                     <div class="form-group">
-                      <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                      <input type="submit" class="btn btn-info" value="Login">
                     </div>
-                    <div class="card-body mt-3 mb-3 mr-2 ml-4">
+                    <div class="card-body">
                         <a href="/accounts/password_reset/">forgot password?</a><br>
                         Don't have an account? <a href="/register">Sign up</a>
                     </div>
@@ -42,7 +49,8 @@
         
               </div>    
             </div>
-        </div>
+           
+        
         </div>
     
     </div>
@@ -50,6 +58,6 @@
     
     
 
-</div>
+
 
 {% endblock %}
