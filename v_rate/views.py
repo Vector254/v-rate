@@ -4,6 +4,9 @@ from .models import Profile, Project, Rate
 from .forms import UserRegistrationForm, ProjectPostForm, UserUpdateForm, ProfileUpdateForm, RatingForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializer import ProjectSerializer, ProfileSerializer
 
 # Create your views here.
 @login_required
@@ -114,3 +117,15 @@ def create_post(request):
 
     context = {'form':form}
     return render(request,'create_post.html',context)
+
+class ProjectList(APIView):
+    def get(self, request, format=None):
+        all_projects = Project.objects.all()
+        serializers = ProjectSerializer(all_projects, many=True)
+        return Response(serializers.data)
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
