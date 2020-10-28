@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'v_rate.apps.VRateConfig',
+    'rest_framework',
     'bootstrap3',
     'crispy_forms',
     'django.contrib.admin',
