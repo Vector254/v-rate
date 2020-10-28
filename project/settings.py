@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'v_rate.apps.VRateConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'bootstrap3',
     'crispy_forms',
     'django.contrib.admin',
@@ -87,7 +88,11 @@ DATABASES = {
             'PASSWORD':'2547Viki',
         }
 }
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
