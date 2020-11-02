@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404, Http404
 from django.contrib.auth.models import User
 from .models import Profile, Project, Rate
 from .forms import UserRegistrationForm, ProjectPostForm, UserUpdateForm, ProfileUpdateForm, RatingForm
@@ -137,6 +137,33 @@ class ProjectList(APIView):
                 return Response(serializers.data, status=status.HTTP_201_CREATED)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class ProjectDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get_project(self, pk):
+        try:
+            return Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        project = self.get_project(pk)
+        serializers = ProjectSerializer(project)
+        return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        project = self.get_project(pk)
+        serializers = ProjectSerializer(project, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        project = self.get_project(pk)
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class ProfileList(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
@@ -151,4 +178,4 @@ class ProfileList(APIView):
                 return Response(serializers.data, status=status.HTTP_201_CREATED)
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    
+   
