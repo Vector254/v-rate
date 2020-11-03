@@ -140,10 +140,9 @@ class ProjectList(APIView):
 class ProjectDescription(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get_project(self, pk):
-        try:
-            return Project.objects.get(pk=pk)
-        except Project.DoesNotExist:
-            return Http404
+        project = Project.objects.get(pk=pk)
+        return project
+       
 
     def get(self, request, pk, format=None):
         project = self.get_project(pk)
