@@ -57,6 +57,11 @@ click [here](https://v-rate.herokuapp.com/)  to visit the live site
  http://localhost:8000/api/projects
  http://localhost:8000/api/profiles
 ```
+#### single item operations
+##### replace id with project id to get
+```bash
+http://localhost:8000/api/projects/project-id/id
+```
 
  
   
